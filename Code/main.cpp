@@ -41,10 +41,45 @@ int main(){
                input_rec.last_name = rtrim(input_rec.last_name);
                input_rec.first_name = rtrim(input_rec.first_name);
                input_rec.ID = rtrim(ID_string);
+               
+               // defining second 'retrival' record variable that with change with iteration of for loop
+               Personal_record ret_rec;
+               // reset in for loop below to signal if should insert on next iteration
+               bool record_inserted = false;
 
-               // write code to implement Requirement 1
-               // hello world
+               // to iterate through list to compare last names with ith index last name
+               for (int i = 0; i < record_list.size(); i++){
+
+                  // to retrive a record variable on ith index and assign it to ret_rec variable
+                  record_list.retrieve(i, ret_rec);
+                  
+                  // string lib compare function returns -1 if first/last name comes before ret_rec alphabetically, 0 if equal, 1 if after
+                  int compare_last = input_rec.last_name.compare(ret_rec.last_name);
+                  int compare_first = input_rec.first_name.compare(ret_rec.first_name);
+                  
+                  // start of if/else statements (not nested)
+                  // if both first and last names match or ids match
+                  if ((input_rec.last_name == ret_rec.last_name && input_rec.first_name == ret_rec.first_name) ||
+                     (input_rec.ID == ret_rec.ID)) {
+                     cout << "Duplicate record found. Discarding." << endl;
+                     record_inserted = true;
+                     break;
+                  } 
+
+                  // need to implement if/else statements for inserting record object at correct index
+
+               // end of for loop
+               }
+
+               // if loop completes while not inserting, the record should be inserted at end
+               if (!record_inserted) {
+                  record_list.insert(record_list.size(), input_rec);
+               }
+
+
+            // end of while loop  
             }
+            cout << record_list.size();
          } else
             cout << "Invalid file name." << endl;
 		insertion_file.close();
