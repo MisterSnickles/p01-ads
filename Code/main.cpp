@@ -86,7 +86,7 @@ int main(){
             cout << "Invalid file name." << endl;
 		insertion_file.close();
       
-      cout << "Number of entries imported entries: " << record_list.size() << endl;
+      cout << "Added " << record_list.size() << " entries" << endl;
       }
       else if(user_input == "2"){
 
