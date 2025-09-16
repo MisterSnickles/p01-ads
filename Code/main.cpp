@@ -42,6 +42,8 @@ int main(){
                input_rec.first_name = rtrim(input_rec.first_name);
                input_rec.ID = rtrim(ID_string);
                
+               // write code to implement Requirement 1
+               
                // defining second 'retrival' record variable that with change with iteration of for loop
                Personal_record ret_rec;
                // reset in for loop below to signal if should insert on next iteration
@@ -109,8 +111,9 @@ int main(){
          elapsed_time = (double)(finish - start) / CLOCKS_PER_SEC;
          cout << endl << "Time: " << elapsed_time << " seconds" << endl << endl;
       } 
-      else if(user_input == "x" || user_input == "X")
+      else if(user_input == "x" || user_input == "X" || user_input == "4"){
          exit_now = true;
+      }
    }
 }
 
