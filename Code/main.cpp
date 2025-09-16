@@ -42,7 +42,7 @@ int main(){
                input_rec.first_name = rtrim(input_rec.first_name);
                input_rec.ID = rtrim(ID_string);
                
-               // write code to implement Requirement 1
+            //START. write code to implement Requirement 1
                
                // defining second 'retrival' record variable that with change with iteration of for loop
                Personal_record ret_rec;
@@ -74,12 +74,15 @@ int main(){
                      record_inserted = true;
                      break;
                   }
+            // END. write code to implement Requirement 1
+
                } 
 
                // if not inserted, it goes at end
                if (!record_inserted) {
                   record_list.insert(record_list.size(), input_rec);
                } 
+         
             }
 
          } else
@@ -90,27 +93,89 @@ int main(){
       }
       else if(user_input == "2"){
 
-         // write code to implement Requirement 2
-         cout << "----Display Record----" << endl;
-         record_list.traverse(visit);
-         cout << "Number of records: " << record_list.size() << endl;
+      // START. write code to implement Requirement 2
+         if (record_list.empty()){
+            cout << "Record is empty! Enter a file to continue." << endl;
+         }else{
+            cout << "----Display Record----" << endl;
+            record_list.traverse(visit);
+            cout << "Number of records: " << record_list.size() << endl;
+         }
+      // END. write code to implement Requirement 2
 
       }  
       else if(user_input == "3"){
          string search_first_name, search_last_name, search_ID;
-         start = clock();
+         
+
+      //START. write code to implement Requirement 3
+         bool found = false;
+         string again;
+         string search_type;
+
+         if (record_list.empty()){
+            cout << "Record is empty! Enter a file to continue." << endl;
+         }else{
+            do{
+               
+               cout << "Do you want to search by ID or by First and Last names?" << endl;
+               cout << "Enter \"ID\" or \"FL\" : ";
+               cin >> search_type;
+               
+               //Input validation. Make sure user enters the proper string
+               while(   search_type != "ID" &&
+                        search_type != "id" &&
+                        search_type != "FL" &&
+                        search_type != "fl")
+                        {
+                           cout << "Invalid input!. " << endl;
+                           cout << "Enter \"ID\" or \"FL\" : ";
+                           cin >> search_type;
+                        }
+               if (search_type == "ID" || search_type == "id"){
+                  
+               }
+               
+               
+               
+               start = clock();
 
 
 
-         // write code to implement Requirement 3
+               if(!found){
+
+                  //search record here
+
+                  cout << "Entry Found" << endl;
+
+               }else{
+                  cout << "Record Not Found" << endl;
+               }
+
+     
+               
+               finish = clock();
+               elapsed_time = (double)(finish - start) / CLOCKS_PER_SEC;
+               cout << endl << "Time: " << elapsed_time << " seconds" << endl << endl;
+
+               cout << "Do you want to search again? (y/n):  " ;
+               cin >> again;
+               
+            } while( again == "y" || 
+                     again == "Y" || 
+                     again == "Yes" || 
+                     again == "yes" || 
+                     again == "sure" ||
+                     again == "yeah" ||
+                     again == "yea" ||
+                     again == "why-not" || 
+                     again == "hell-yeah!"   // okay, im getting carried away :)
+                  );
+        
+      //END. write code to implement Requirement 3
 
 
-
-
-
-         finish = clock();
-         elapsed_time = (double)(finish - start) / CLOCKS_PER_SEC;
-         cout << endl << "Time: " << elapsed_time << " seconds" << endl << endl;
+         }
       } 
       else if(user_input == "x" || user_input == "X" || user_input == "4"){
          exit_now = true;
