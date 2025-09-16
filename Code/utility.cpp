@@ -13,4 +13,5 @@ void visit(Personal_record &r){
    cout << left << setw(12) << "Last Name: " << r.last_name << endl;
    cout << left << setw(12) << "First Name: " << r.first_name << endl;
    cout << left << setw(12) << "ID: " << r.ID << endl;
+   cout << "--------------------" << endl;
 }
