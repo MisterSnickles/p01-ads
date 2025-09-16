@@ -46,7 +46,7 @@ int main(){
                
                // defining second 'retrival' record variable that with change with iteration of for loop
                Personal_record ret_rec;
-               // reset in for loop below to signal if should insert on next iteration
+               // reset in for loop below to signal if should insert at end of list
                bool record_inserted = false;
 
                // to iterate through list to compare last names with ith index last name
@@ -68,20 +68,20 @@ int main(){
                      break;
                   } 
 
-                  // need to implement if/else statements for inserting record object at correct index
+                  // if last name comes before or (last name is the same and first name comes before)
+                  else if (compare_last < 0 || (compare_last == 0 && compare_first < 0)) {
+                     record_list.insert(i, input_rec);
+                     record_inserted = true;
+                     break;
+                  }
+               } 
 
-               // end of for loop
-               }
-
-               // if loop completes while not inserting, the record should be inserted at end
+               // if not inserted, it goes at end
                if (!record_inserted) {
                   record_list.insert(record_list.size(), input_rec);
-               }
-
-
-            // end of while loop  
+               } 
             }
-            cout << record_list.size();
+
          } else
             cout << "Invalid file name." << endl;
 		insertion_file.close();
