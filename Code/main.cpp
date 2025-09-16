@@ -1,6 +1,6 @@
 #include "utility.h"
 #include "List.h"
-
+//test
 using namespace std;
 
 int main(){
@@ -85,16 +85,17 @@ int main(){
          } else
             cout << "Invalid file name." << endl;
 		insertion_file.close();
+      
+      cout << "Number of entries imported entries: " << record_list.size() << endl;
       }
       else if(user_input == "2"){
 
-      
-
-      // write code to implement Requirement 2
-
-      
-      
-      }
+         // write code to implement Requirement 2
+         cout << "----Display Record----" << endl;
+         record_list.traverse(visit);
+         cout << "Number of records: " << record_list.size() << endl;
+         
+      }  
       else if(user_input == "3"){
          string search_first_name, search_last_name, search_ID;
          start = clock();

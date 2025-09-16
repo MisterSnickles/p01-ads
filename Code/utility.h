@@ -10,6 +10,8 @@ struct Personal_record {
 	std::string ID;
 };
 
+void visit(Personal_record &r);
+
 enum Error_code { duplicate_error, not_present, success, overflow, underflow, range_err, fail };
 
 // returns a new string with all trailing white space chars (" \n\r\t") removed 
