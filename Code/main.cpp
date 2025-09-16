@@ -1,6 +1,6 @@
 #include "utility.h"
 #include "List.h"
-//test
+
 using namespace std;
 
 int main(){
@@ -94,7 +94,7 @@ int main(){
          cout << "----Display Record----" << endl;
          record_list.traverse(visit);
          cout << "Number of records: " << record_list.size() << endl;
-         
+
       }  
       else if(user_input == "3"){
          string search_first_name, search_last_name, search_ID;
