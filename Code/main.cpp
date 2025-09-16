@@ -100,10 +100,85 @@ int main(){
          string search_first_name, search_last_name, search_ID;
          start = clock();
 
-
-
          // write code to implement Requirement 3
 
+         // to search both id and full name in same input line we need to use get line
+         string user_search;
+         cout << "Please enter full name or ID to search: ";
+         getline(cin >> ws, user_search);
+        
+
+         // find space within user input if searching via full name
+         size_t space_pos = user_search.find(' ');\
+
+         Personal_record ret_search;
+         bool match = false;
+
+         // if space was found
+         if (space_pos != string::npos) {
+
+            // assign first and last name to string before and after space character
+            search_first_name = user_search.substr(0, space_pos);
+            search_last_name  = user_search.substr(space_pos + 1);
+
+            // iterate through each record object in list
+            for (int i = 0; i < record_list.size(); i++) {
+               record_list.retrieve(i, ret_search);
+               
+               // if retrived first/last name match search first/last name
+               if ((ret_search.last_name == search_last_name) && (ret_search.first_name == search_first_name) ) {
+                  match = true;
+                  cout << "Match found: " << endl;
+
+                  // print matching record
+                  visit(ret_search);
+
+                  break;
+               } 
+            }
+            if (!match) {
+               cout << "Not found" << endl;
+            }
+         } 
+         // treat as id
+         else {
+            // no space was founds so test if all numbers for id
+            bool is_numeric = !user_search.empty();
+
+            // for loop to iterate through each character of user search
+            for (char c : user_search) {
+               // if one character does not equal a digit
+               if (!isdigit(c)) {
+                  is_numeric = false;
+                  cout << "Error: The ID/Name you entered is not formatted correctly." << endl;
+                  break;
+               }
+            }
+            if (is_numeric) {
+               // assign id to entire length of character array
+               search_ID = user_search.substr(0, user_search.size());
+
+               // iterate through each record object in list
+               for (int i = 0; i < record_list.size(); i++) {
+                  record_list.retrieve(i, ret_search);
+
+                  // if retrived record id matches search id
+                  if (ret_search.ID == search_ID) {
+                     match = true;
+                     cout << "Match found: " << endl;
+
+                     // print matching record
+                     visit(ret_search);
+
+                     break;
+                  }
+                  
+               }
+               if (!match) {
+                  cout << "Not found" << endl;
+               }
+            }
+         }
 
 
 
