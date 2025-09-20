@@ -109,7 +109,7 @@ int main(){
         
 
          // find space within user input if searching via full name
-         size_t space_pos = user_search.find(' ');\
+         size_t space_pos = user_search.find(' ');
 
          Personal_record ret_search;
          bool match = false;
