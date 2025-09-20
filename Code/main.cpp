@@ -107,80 +107,94 @@ int main(){
       }  
       else if(user_input == "3"){
       //START. write code to implement Requirement 3
-         string search_first_name, search_last_name, search_ID;
+         string search_first_name, search_last_name, search_ID, again, search_type;
          bool found = false;
-         string again;
-         string search_type;
          Personal_record retrieve_record;                    
 
-         if (record_list.empty()){
-            cout << "Record is empty! Enter a file to continue." << endl;
-         }else{
+         if (record_list.empty()){cout << "Record is empty! Enter a file to continue." << endl;}
+         else{
             do{
                search_ID = -1;
                found = false;
                cout << "Do you want to search by ID or by First and Last names?" << endl;
-               cout << "Enter \"ID\" or \"FL\" : ";
+               cout << "Enter \"id\" or \"fl\" : ";
                cin >> search_type;
                
                //Input validation. Make sure user enters the proper string
                while(   search_type != "ID" && search_type != "id" && search_type != "FL" && search_type != "fl") {
                            cout << "Invalid input!. " << endl;
-                           cout << "Enter \"ID\" or \"FL\" : ";
+                           cout << "Enter \"id\" or \"fl\" : ";
                            cin >> search_type;
                         }
-            
 
-               //Search based on Identification number.
+               //Search based on ID number.
                if (search_type == "ID" || search_type == "id"){
                   cout << "Enter ID you wish to search:  ";
                   cin >> search_ID;
 
                   for (int i=0; i<record_list.size(); ++i){
                      start = clock();
-
-                     if((record_list.retrieve(i,retrieve_record)) == success){
-                        if(retrieve_record.ID == search_ID){ 
+                     if((record_list.retrieve(i,retrieve_record)) == success && retrieve_record.ID == search_ID){
                            found = true;
+                           // cout << endl << "Record Found" << endl;
+                           // visit(retrieve_record);     
                            break;
-                        }
-                     }
+                     } //else {cout << "Record not found" << endl; }
                   }
                }
 
+
                //Search based on First and Last name.
                if (search_type == "FL" || search_type == "fl"){
-                     start = clock();
+                        string user_search;
+                        cout << "Enter First, then Space, then Last. I.E. \"First Last\": ";
+                        getline(cin >> ws, user_search);
+                        start = clock();
+
+                        // find space within user input if searching via full name
+                        size_t space_pos = user_search.find(' ');
+
+                        // if space was found
+                        if (space_pos != string::npos) {
+
+                           // assign first and last name to string before and after space character
+                           search_first_name = user_search.substr(0, space_pos);
+                           search_last_name  = user_search.substr(space_pos + 1);
+
+                           // iterate through each record object in list
+                           for (int i = 0; i < record_list.size(); ++i) {
+                              record_list.retrieve(i, retrieve_record);
+                              
+                              // if retrived first/last name match search first/last name
+                              if ((retrieve_record.last_name == search_last_name) && (retrieve_record.first_name == search_first_name) ) {
+                                 found = true;
+                                 break;
+                              }
+                           }
+                        } 
                }
                
-               if(found){
-                  cout << endl;
-                  cout << "Entry Found" << endl;
-                  cout << left << setw(12) << "Last Name: " << retrieve_record.last_name << endl;
-                  cout << left << setw(12) << "First Name: " << retrieve_record.first_name << endl;
-                  cout << left << setw(12) << "ID: " << retrieve_record.ID << endl;                  
-               }else{
-                  cout << "Record Not Found" << endl;
-               }
 
+               // prints out the record if it is found in the list. otherwise, it prints not found
+               if(found){
+                  cout << endl << "Record Found" << endl;
+                  visit(retrieve_record);
+               } else{ cout << "Record not found" << endl;}
+
+
+               //stop the clock and print out the time it took to find the record
                finish = clock();
                elapsed_time = (double)(finish - start) / CLOCKS_PER_SEC;
                cout << endl << "Time: " << elapsed_time << " seconds" << endl << endl;
 
+
+               //ask the user if they want to find anothe record
                cout << "Do you want to search again? (y/n):  " ;
                cin >> again;
                cout << endl;
-            } while( again == "y" || 
-                     again == "Y" || 
-                     again == "Yes" || 
-                     again == "yes" || 
-                     again == "sure" ||
-                     again == "yeah" ||
-                     again == "yea" ||
-                     again == "why-not" || 
-                     again == "hell-yeah!"   // okay, im getting carried away :)
-                  );
+            } while( again == "y" || again == "Y" || again == "Yes" || again == "yes" || again == "sure" || again == "yeah" || again == "yea" || again == "why-not" || again == "hell-yeah!");
       //END. write code to implement Requirement 3
+         
          }
       } 
       else if(user_input == "x" || user_input == "X" || user_input == "4"){
