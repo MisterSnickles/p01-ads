@@ -6,4 +6,4 @@ main.o: main.cpp
 utility.o: utility.cpp
 	g++ -c -g utility.cpp
 clean:
-	del *.o 
+	rm *.o *.exe
