@@ -135,11 +135,9 @@ int main(){
                   for (int i=0; i<record_list.size(); ++i){
                      start = clock();
                      if((record_list.retrieve(i,retrieve_record)) == success && retrieve_record.ID == search_ID){
-                           found = true;
-                           // cout << endl << "Record Found" << endl;
-                           // visit(retrieve_record);     
+                           found = true; 
                            break;
-                     } //else {cout << "Record not found" << endl; }
+                     } 
                   }
                }
 
@@ -149,6 +147,7 @@ int main(){
                         string user_search;
                         cout << "Enter First, then Space, then Last. I.E. \"First Last\": ";
                         getline(cin >> ws, user_search);
+                        
                         start = clock();
 
                         // find space within user input if searching via full name
@@ -202,4 +201,3 @@ int main(){
       }
    }
 }
-
