@@ -37,36 +37,36 @@ int main(){
          if(!insertion_file.fail()){
             record_list.clear();
 
-            Personal_record input_rec;
+            Personal_record input_record;
             string ID_string;
-            while ((insertion_file >> input_rec.last_name) && 
-                  (insertion_file >> input_rec.first_name) &&
+            while ((insertion_file >> input_record.last_name) && 
+                  (insertion_file >> input_record.first_name) &&
                   (insertion_file >> ID_string)) {
-               input_rec.last_name = rtrim(input_rec.last_name);
-               input_rec.first_name = rtrim(input_rec.first_name);
-               input_rec.ID = rtrim(ID_string);
+               input_record.last_name = rtrim(input_record.last_name);
+               input_record.first_name = rtrim(input_record.first_name);
+               input_record.ID = rtrim(ID_string);
                
             //START. write code to implement Requirement 1
                
                // defining second 'retrival' record variable that with change with iteration of for loop
-               Personal_record ret_rec;
+               Personal_record retrieve_record;
                // reset in for loop below to signal if should insert at end of list
                bool record_inserted = false;
 
                // to iterate through list to compare last names with ith index last name
                for (int i = 0; i < record_list.size(); i++){
 
-                  // to retrive a record variable on ith index and assign it to ret_rec variable
-                  record_list.retrieve(i, ret_rec);
+                  // to retrive a record variable on ith index and assign it to retrieve_record variable
+                  record_list.retrieve(i, retrieve_record);
                   
-                  // string lib compare function returns -1 if first/last name comes before ret_rec alphabetically, 0 if equal, 1 if after
-                  int compare_last = input_rec.last_name.compare(ret_rec.last_name);
-                  int compare_first = input_rec.first_name.compare(ret_rec.first_name);
+                  // string lib compare function returns -1 if first/last name comes before retrieve_record alphabetically, 0 if equal, 1 if after
+                  int compare_last = input_record.last_name.compare(retrieve_record.last_name);
+                  int compare_first = input_record.first_name.compare(retrieve_record.first_name);
                   
                   // start of if/else statements (not nested)
                   // if both first and last names match or ids match
-                  if ((input_rec.last_name == ret_rec.last_name && input_rec.first_name == ret_rec.first_name) ||
-                     (input_rec.ID == ret_rec.ID)) {
+                  if ((input_record.last_name == retrieve_record.last_name && input_record.first_name == retrieve_record.first_name) ||
+                     (input_record.ID == retrieve_record.ID)) {
                      cout << "Duplicate record found. Discarding." << endl;
                      record_inserted = true;
                      break;
@@ -74,7 +74,7 @@ int main(){
 
                   // if last name comes before or (last name is the same and first name comes before)
                   else if (compare_last < 0 || (compare_last == 0 && compare_first < 0)) {
-                     record_list.insert(i, input_rec);
+                     record_list.insert(i, input_record);
                      record_inserted = true;
                      break;
                   }
@@ -84,7 +84,7 @@ int main(){
 
                // if not inserted, it goes at end
                if (!record_inserted) {
-                  record_list.insert(record_list.size(), input_rec);
+                  record_list.insert(record_list.size(), input_record);
                } 
          
             }
