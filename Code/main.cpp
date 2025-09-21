@@ -1,8 +1,11 @@
 #include "utility.h"
 #include "List.h"
 #include <iomanip>
+#include <cctype> // header for to_lower() function
 
 using namespace std;
+
+string toLower(const string &);
 
 int main(){
    clock_t start, finish;
@@ -109,7 +112,11 @@ int main(){
       //START. write code to implement Requirement 3
          string search_first_name, search_last_name, search_ID, again, search_type;
          bool found = false;
-         Personal_record retrieve_record;                    
+         Personal_record retrieve_record;
+         
+         // a list to hold any matching records using fuzzy search logic
+         List<Personal_record> matching_records;              
+         const int fuzzy = 2;
 
          if (record_list.empty()){cout << "Record is empty! Enter a file to continue." << endl;}
          else{
@@ -134,7 +141,7 @@ int main(){
 
                   for (int i=0; i<record_list.size(); ++i){
                      start = clock();
-                     if((record_list.retrieve(i,retrieve_record)) == success && retrieve_record.ID == search_ID){
+                     if((record_list.retrieve(i, retrieve_record)) == success && retrieve_record.ID == search_ID){
                            found = true; 
                            break;
                      } 
@@ -147,6 +154,7 @@ int main(){
                         string user_search;
                         cout << "Enter First, then Space, then Last. I.E. \"First Last\": ";
                         getline(cin >> ws, user_search);
+                        user_search = toLower(user_search);
                         
                         start = clock();
 
@@ -158,16 +166,21 @@ int main(){
 
                            // assign first and last name to string before and after space character
                            search_first_name = user_search.substr(0, space_pos);
-                           search_last_name  = user_search.substr(space_pos + 1);
+                           search_last_name = user_search.substr(space_pos + 1);
 
                            // iterate through each record object in list
                            for (int i = 0; i < record_list.size(); ++i) {
                               record_list.retrieve(i, retrieve_record);
                               
+                              // convert first and last name into lower case for easier search
+                              string last_name = toLower(retrieve_record.last_name);
+                              string first_name = toLower(retrieve_record.first_name);
+                              
                               // if retrived first/last name match search first/last name
-                              if ((retrieve_record.last_name == search_last_name) && (retrieve_record.first_name == search_first_name) ) {
+                              if ((last_name.find(search_last_name) == 0) && (first_name.find(search_first_name) == 0) ) {
                                  found = true;
-                                 break;
+                                 matching_records.insert(0, retrieve_record);
+                                 
                               }
                            }
                         } 
@@ -177,7 +190,8 @@ int main(){
                // prints out the record if it is found in the list. otherwise, it prints not found
                if(found){
                   cout << endl << "Record Found" << endl;
-                  visit(retrieve_record);
+                  matching_records.traverse(visit);
+                  matching_records.clear();
                } else{ cout << "Record not found" << endl;}
 
 
@@ -200,4 +214,13 @@ int main(){
          exit_now = true;
       }
    }
+}
+
+
+string toLower(const string &original_str) {
+   string result = original_str;
+   for (char &c: result) {
+      c = tolower(c);
+   }
+   return result;
 }
