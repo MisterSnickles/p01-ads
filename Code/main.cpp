@@ -113,10 +113,10 @@ int main(){
          string search_first_name, search_last_name, search_ID, again, search_type;
          bool found = false;
          Personal_record retrieve_record;
+
          
          // a list to hold any matching records using fuzzy search logic
          List<Personal_record> matching_records;              
-         const int fuzzy = 2;
 
          if (record_list.empty()){cout << "Record is empty! Enter a file to continue." << endl;}
          else{
@@ -190,7 +190,8 @@ int main(){
 
                // prints out the record if it is found in the list. otherwise, it prints not found
                if(found){
-                  cout << endl << "Record Found" << endl;
+                  
+                  cout << endl << matching_records.size() << " Record(s) Found" << endl;
                   matching_records.traverse(visit);
                   matching_records.clear();
                } else{ cout << "Record not found" << endl;}
