@@ -1,0 +1,32 @@
+name: p01 Build & Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest  # or 'windows-latest' or 'macos-latest'
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # - name: Install dependencies
+      # run: sudo apt-get update && sudo apt-get install -y build-essential
+
+    - name: Build project
+      run: make
+      working-directory: p01-ads/Code
+        # g++ -o p01 p01.cpp  # Update with your actual files
+    
+    - name: Run with simulated input
+      run: ./p01 < input_simulate.txt 
+      working-directory: p01-ads/Code
+      # Run your code with simulated input
+
+    # - name: Run tests
+      # run: ./run_tests.sh      # Replace with your test script or test binary
