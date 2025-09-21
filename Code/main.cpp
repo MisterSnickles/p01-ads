@@ -5,6 +5,7 @@
 
 using namespace std;
 
+//function declaration
 string toLower(const string &);
 
 int main(){
@@ -98,6 +99,7 @@ int main(){
       else if(user_input == "2"){
 
       // START. write code to implement Requirement 2
+         //check to see if the file is empty. If so, then send a message. If not, then display the record.
          if (record_list.empty()){
             cout << "Record is empty! Enter a file to continue." << endl;
          }else{
@@ -215,12 +217,13 @@ int main(){
       else if(user_input == "x" || user_input == "X" || user_input == "4"){
          exit_now = true;
       } else{
+         //In case user doesn't enter a valid menu option
          cout << "Invalid input. Try again." << endl;
       }
    }
 }
 
-
+//Function definition
 string toLower(const string &original_str) {
    string result = original_str;
    for (char &c: result) {
