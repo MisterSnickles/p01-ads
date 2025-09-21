@@ -17,4 +17,22 @@ y
 id
 34
 n
+1
+people.txt
+2
+3
+fl
+Mia Flores
+y
+fl
+mIa fLorES
+y
+fl
+ma da
+y
+id
+1090
+y
+id
+10T0
 x
