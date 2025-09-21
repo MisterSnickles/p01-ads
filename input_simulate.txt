@@ -2,4 +2,19 @@
 data.txt
 2
 3
+fl
+c c
+y
+fl
+d c
+y
+fl 
+d
+y
+id
+22
+y
+id
+34
+n
 x
