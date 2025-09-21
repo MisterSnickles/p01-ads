@@ -214,6 +214,8 @@ int main(){
       } 
       else if(user_input == "x" || user_input == "X" || user_input == "4"){
          exit_now = true;
+      } else{
+         cout << "Invalid input. Try again." << endl;
       }
    }
 }
