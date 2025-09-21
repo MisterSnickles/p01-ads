@@ -143,6 +143,7 @@ int main(){
                      start = clock();
                      if((record_list.retrieve(i, retrieve_record)) == success && retrieve_record.ID == search_ID){
                            found = true; 
+                           matching_records.insert(0, retrieve_record);
                            break;
                      } 
                   }
