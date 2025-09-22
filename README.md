@@ -23,17 +23,15 @@ or on Windows: **p01.exe**
 
 When project is running, there will be a menu containing 4 options:'
 
-
 1: Import List from File
 
 When selecting this option, please import included files data.txt or people.txt for manual testing.
 
-  
 2: Display List
 
-This option simply displays the imported list. In this program, it displays person record objects appearing as: 
-  
-  ***************
+This option simply displays the imported list. In this program, it displays person record objects appearing as:
+
+---
 
   Last Name
 
@@ -41,16 +39,17 @@ This option simply displays the imported list. In this program, it displays pers
 
   ID
 
-  ***************
-  
-  
+---
+
 3: Search List
 
-This option allows the user to search the list of people by entering a first and last name or by ID. Make sure to display  the list first so you can test the search functionality properly. 
-
+This option allows the user to search the list of people by entering a first and last name or by ID. Make sure to display  the list first so you can test the search functionality properly.
 
 *Alternatively, if you want to simulate the input for automatic testing, please input this command into the terminal: **./p01.exe > input_simulate.txt***
 
+x. Exit
+
+This option exits the program
 
 **Code Comments for Clarity**
 
