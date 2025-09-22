@@ -43,7 +43,7 @@ This option simply displays the imported list. In this program, it displays pers
 
 3: Search List
 
-This option allows the user to search the list of people by entering a first and last name or by ID. Make sure to display the list first so you can test the search functionality properly. The search functionality supports fuzzy and case-insensitive searching, meaning if you type an incomplete first or last name (e.g Jonath MaBeRY --> Found 1 Match: (Jonathan Mabery ID: 123))
+This option allows the user to search the list of people by entering a first and last name or by ID. Make sure to display the list first so you can test the search functionality properly. The search functionality supports fuzzy and case-insensitive searching, meaning if you type an incomplete first or last name (e.g Jonath MaBeRY --> Found 1 Match: (Jonathan Mabery ID: 123)) it will auto-correct your search. It isn't full proof, but will protect against minor spelling and capitalization errors.
 
 x. Exit
 
