@@ -140,9 +140,9 @@ int main(){
                if (search_type == "ID" || search_type == "id"){
                   cout << "Enter ID you wish to search:  ";
                   cin >> search_ID;
+                  start = clock();
 
                   for (int i=0; i<record_list.size(); ++i){
-                     start = clock();
                      if((record_list.retrieve(i, retrieve_record)) == success && retrieve_record.ID == search_ID){
                            found = true; 
                            matching_records.insert(0, retrieve_record);
